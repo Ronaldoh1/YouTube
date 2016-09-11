@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // make the window visible
         window?.makeKeyAndVisible()
         
+        // set the root view controller to your initial viewcontroller. 
+        let layout = UICollectionViewFlowLayout()
+        window?.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
+        
         return true
     }
 
