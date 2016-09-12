@@ -48,7 +48,12 @@ class HomeViewController: UICollectionViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        //we know what the width is, but need to figure out the height 
+        //we can get the with of the thumnail image by using the view of the cell and subracting -16 from each side and then we multiply it by 9/ 16 ratio
+        let height = (view.frame.width - 16 - 16) * 9 / 16 // we subtract the spacing from the left and right for the with. And then multiply by 9/16 ratio (this is the ratio for video) 
+        
+        //The 68 below comes from all the spacing that we've addded in order to layout everything vertically. So 8 + 44 + 16
+        return CGSize(width: view.frame.width, height: height + 16 + 68)
     }
 }
 
