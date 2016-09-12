@@ -13,7 +13,15 @@ class HomeViewController: UICollectionViewController {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Home"
+        
+        // Set text color to white for Navigationbar
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
+        titleLabel.text = "Home"
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = UIFont.systemFont(ofSize: 20)
+        
+        navigationItem.titleView = titleLabel
+        navigationController?.navigationBar.isTranslucent = false 
         
         collectionView?.backgroundColor = UIColor.white
         
