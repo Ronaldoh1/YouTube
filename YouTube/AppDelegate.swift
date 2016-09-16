@@ -30,6 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
         
+        //Create status var background 
+        
+        let statusBackgroundView = UIView()
+        statusBackgroundView.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31, alpha: 1)
+        
+        //Window is the actual window that contains everything in the screen inside the application. 
+        
+        window?.addSubview(statusBackgroundView)
+        window?.addConstraintsWithFormat("H:|[v0]|", views: statusBackgroundView)
+        window?.addConstraintsWithFormat("V:|[v0(20)]", views: statusBackgroundView)
+        
         return true
     }
 
