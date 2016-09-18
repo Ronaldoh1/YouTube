@@ -10,6 +10,12 @@ import UIKit
 
 class MenuCell: BaseCell {
     
+    let imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "")
+        return iv
+    }()
+    
     override func setupViews() {
         super.setupViews()
         backgroundColor = UIColor.yellow
