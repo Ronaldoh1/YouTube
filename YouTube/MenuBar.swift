@@ -24,7 +24,7 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
         
         addSubview(collectionView)
         //add constraints to pin collectionView to each side
@@ -51,7 +51,6 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = UIColor.blue
         return cell
     }
     
