@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FB17EC601D8C08420037DA49 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17EC5F1D8C08420037DA49 /* UIColor+Utils.swift */; };
+		FB40D5C71D8EE5A500382B51 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40D5C61D8EE5A500382B51 /* MenuBar.swift */; };
 		FB653E251D853B2C009EF30F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB653E241D853B2C009EF30F /* AppDelegate.swift */; };
 		FB653E271D853B2C009EF30F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB653E261D853B2C009EF30F /* HomeViewController.swift */; };
 		FB653E2C1D853B2C009EF30F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB653E2B1D853B2C009EF30F /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		FB17EC5F1D8C08420037DA49 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		FB40D5C61D8EE5A500382B51 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		FB653E211D853B2C009EF30F /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB653E241D853B2C009EF30F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB653E261D853B2C009EF30F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				FB88808F1D8550D30096562B /* VideoCell.swift */,
+				FB40D5C61D8EE5A500382B51 /* MenuBar.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 			files = (
 				FB17EC601D8C08420037DA49 /* UIColor+Utils.swift in Sources */,
 				FB653E271D853B2C009EF30F /* HomeViewController.swift in Sources */,
+				FB40D5C71D8EE5A500382B51 /* MenuBar.swift in Sources */,
 				FB653E251D853B2C009EF30F /* AppDelegate.swift in Sources */,
 				FB8880921D85EB1F0096562B /* UIView+Utils.swift in Sources */,
 				FB8880901D8550D30096562B /* VideoCell.swift in Sources */,

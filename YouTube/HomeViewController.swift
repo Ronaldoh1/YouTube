@@ -9,6 +9,10 @@
 import UIKit
 
 class HomeViewController: UICollectionViewController {
+    
+    let menuBar: MenuBar = {
+        return MenuBar()
+    }()
 
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -28,6 +32,15 @@ class HomeViewController: UICollectionViewController {
         collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
         collectionView?.delegate = self
         collectionView?.dataSource = self
+        
+        //setup Menu Bar
+        setupMenuBar()
+    }
+    
+    private func setupMenuBar() {
+       view.addSubview(menuBar)
+        view.addConstraintsWithFormat("H:|[v0]|", views: menuBar)
+        view.addConstraintsWithFormat("V:|[v0(50)]", views: menuBar)
     }
 
     // MARK: UICollectionView Data Source
