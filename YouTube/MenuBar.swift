@@ -20,6 +20,7 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
     }()
     
     let cellId = "cellId"
+    let imageNames = ["home", "trending", "subscriptions", "account"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +51,10 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? MenuCell else {
+            return UICollectionViewCell()
+        }
+        cell.imageView.image = UIImage(named: imageNames[indexPath.item])
         return cell
     }
     
