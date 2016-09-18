@@ -33,6 +33,14 @@ class HomeViewController: UICollectionViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
+        // Make the CollectionView move below the navigation bars
+        
+        collectionView?.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
+        
+        // Make the collectionView Scroll bar insets same as the collection View 
+        
+        collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
+        
         //setup Menu Bar
         setupMenuBar()
     }
