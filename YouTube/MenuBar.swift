@@ -33,6 +33,7 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
         addConstraintsWithFormat("V:|[v0]|", views: collectionView)
         
         backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
+        collectionView.selectItem(at: IndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: .top)
         
     }
     
@@ -54,7 +55,9 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? MenuCell else {
             return UICollectionViewCell()
         }
-        cell.imageView.image = UIImage(named: imageNames[indexPath.item])
+        cell.imageView.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        cell.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
+        
         return cell
     }
     
