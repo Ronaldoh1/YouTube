@@ -10,6 +10,22 @@ import UIKit
 
 class HomeViewController: UICollectionViewController {
     
+    var videos:[Video] = {
+       var blankSpaceVideo = Video()
+        
+        blankSpaceVideo.title = "Taylor Swift - Blank Space"
+        blankSpaceVideo.thumbNailImageName = "blankspace"
+        blankSpaceVideo.numberOfViews = 23434343943
+        blankSpaceVideo.uploadDate = Date()
+        
+        var videoChannel = Channel()
+        videoChannel.name = "KayneIsTheBest"
+        videoChannel.profileImageName = "kanye_profile"
+        blankSpaceVideo.channel = videoChannel
+        
+        return [blankSpaceVideo]
+    }()
+    
     let menuBar: MenuBar = {
         return MenuBar()
     }()
@@ -43,6 +59,28 @@ class HomeViewController: UICollectionViewController {
         
         //setup Menu Bar
         setupMenuBar()
+        
+        //setupNavBar Buttons 
+        setUpNavBarButtons()
+    }
+    
+    private func setUpNavBarButtons() {
+        let searchImage = UIImage(named: "search_icon")?.withRenderingMode(.alwaysOriginal)
+        let searchBarButtonItem = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(handleSearch))
+        
+        let moreImage = UIImage(named: "nav_more_icon")?.withRenderingMode(.alwaysOriginal)
+        let moreButton = UIBarButtonItem(image: moreImage, style: .plain, target: self, action: #selector(handleMore))
+        navigationItem.rightBarButtonItems = [moreButton, searchBarButtonItem]
+        
+    }
+    
+    
+    @objc private func handleMore() {
+        
+    }
+    
+    @objc private func handleSearch() {
+        print("123")
     }
     
     private func setupMenuBar() {
@@ -55,7 +93,7 @@ class HomeViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 5
+        return videos.count
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -63,7 +101,12 @@ class HomeViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? VideoCell else {
+            return UICollectionViewCell()
+        }
+        
+        let video = videos[indexPath.item]
+        cell.video = video
       
         return cell
     }
@@ -82,7 +125,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let height = (view.frame.width - 16 - 16) * 9 / 16 // we subtract the spacing from the left and right for the with. And then multiply by 9/16 ratio (this is the ratio for video) 
         
         //The 68 below comes from all the spacing that we've addded in order to layout everything vertically. So 8 + 44 + 16
-        return CGSize(width: view.frame.width, height: height + 16 + 68)
+        return CGSize(width: view.frame.width, height: height + 16 + 68 + 20)
     }
 }
 
