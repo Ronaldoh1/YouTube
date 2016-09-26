@@ -14,14 +14,9 @@ class VideoCell: BaseCell {
         didSet {
             titleLabel.text = video?.title
             
-            if let thumbnailImage = video?.thumbNailImageName {
-                thumbnailImageView.image = UIImage(named: thumbnailImage)
-            }
-           
+            setupThumbnailImage()
             
-            if let profileImageName = video?.channel?.profileImageName {
-                userProfileImageView.image = UIImage(named: profileImageName)
-            }
+            setupProfileImageName()
             
             if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfViews {
                 
@@ -66,10 +61,11 @@ class VideoCell: BaseCell {
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "taylor")
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 22
         imageView.layer.masksToBounds = true
+        
         return imageView
     }()
     
@@ -92,6 +88,19 @@ class VideoCell: BaseCell {
     
     var titleLabelHeightConstraint: NSLayoutConstraint?
     
+    func setupProfileImageName() {
+        if let profileImageURL = video?.channel?.profileImageName {
+            userProfileImageView.loadImageUsingUrlString(urlString: profileImageURL)
+        }
+    }
+
+    func setupThumbnailImage() {
+        
+        if let thumbnailImageurl = video?.thumbNailImageName {
+            
+         thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageurl)
+        }
+    }
     
     override func setupViews() {
         addSubview(thumbnailImageView)
