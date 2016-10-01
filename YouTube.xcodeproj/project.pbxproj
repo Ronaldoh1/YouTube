@@ -11,6 +11,7 @@
 		FB2CB3161D971AC000374B95 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2CB3151D971AC000374B95 /* Video.swift */; };
 		FB2CB3181D971ACB00374B95 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2CB3171D971ACB00374B95 /* Channel.swift */; };
 		FB2CB31A1D98CC1800374B95 /* UIImageView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2CB3191D98CC1800374B95 /* UIImageView+Utils.swift */; };
+		FB2D9C131DA0676100A9AE4D /* SettingsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D9C121DA0676100A9AE4D /* SettingsLauncher.swift */; };
 		FB40D5C71D8EE5A500382B51 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40D5C61D8EE5A500382B51 /* MenuBar.swift */; };
 		FB40D5C91D8EF9C900382B51 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40D5C81D8EF9C900382B51 /* MenuCell.swift */; };
 		FB40D5CB1D8EFA3D00382B51 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB40D5CA1D8EFA3D00382B51 /* BaseCell.swift */; };
@@ -28,6 +29,7 @@
 		FB2CB3151D971AC000374B95 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		FB2CB3171D971ACB00374B95 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		FB2CB3191D98CC1800374B95 /* UIImageView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Utils.swift"; sourceTree = "<group>"; };
+		FB2D9C121DA0676100A9AE4D /* SettingsLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLauncher.swift; sourceTree = "<group>"; };
 		FB40D5C61D8EE5A500382B51 /* MenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		FB40D5C81D8EF9C900382B51 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		FB40D5CA1D8EFA3D00382B51 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				FB653E261D853B2C009EF30F /* HomeViewController.swift */,
+				FB2D9C121DA0676100A9AE4D /* SettingsLauncher.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				FB40D5C71D8EE5A500382B51 /* MenuBar.swift in Sources */,
 				FB2CB3161D971AC000374B95 /* Video.swift in Sources */,
 				FB40D5CB1D8EFA3D00382B51 /* BaseCell.swift in Sources */,
+				FB2D9C131DA0676100A9AE4D /* SettingsLauncher.swift in Sources */,
 				FB653E251D853B2C009EF30F /* AppDelegate.swift in Sources */,
 				FB8880921D85EB1F0096562B /* UIView+Utils.swift in Sources */,
 				FB8880901D8550D30096562B /* VideoCell.swift in Sources */,
@@ -239,7 +243,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -289,7 +293,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
