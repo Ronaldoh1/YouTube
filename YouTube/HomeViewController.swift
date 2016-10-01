@@ -117,7 +117,12 @@ class HomeViewController: UICollectionViewController {
                     
                     
                 }
-                 self.collectionView?.reloadData()
+                
+                //Bounce back to the main thread and upadate the UI
+              
+                    self.collectionView?.reloadData()
+                
+                
                 
             } catch let jsonError {
                 print(jsonError)

@@ -46,10 +46,10 @@ class VideoCell: BaseCell {
     }
     
     
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "blankspace")
-        return imageView
+        return imageView 
     }()
     
     let separatorView: UIView = {
@@ -58,8 +58,8 @@ class VideoCell: BaseCell {
         return view
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.image = UIImage(named: "taylor")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
