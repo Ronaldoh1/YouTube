@@ -24,6 +24,8 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
 
     let cellHeight: CGFloat = 50
     
+    var homeController: HomeViewController?
+    
     override init() {
          super.init()
         
@@ -33,8 +35,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     }
     
     func handleMore() {
-        
-        
+    
         if let window = UIApplication.shared.keyWindow {
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
             
@@ -57,12 +58,18 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         }
     }
     
-    @objc private func handleDismiss() {
-        UIView.animate(withDuration: 0.5) {
+    @objc private func handleDismiss(setting: Setting) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
             
             if let window = UIApplication.shared.keyWindow {
-               self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+                self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            }
+            
+        }) { (completed: Bool) in
+            
+            if setting.name != "Cancel" && setting.name != "" {
+                self.homeController?.showController(for: setting)
             }
             
         }
@@ -85,6 +92,13 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         cell.setting = setting
         
         return cell
+    }
+    //Respond to clicks 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting = self.settings[indexPath.item]
+       handleDismiss(setting: setting)
+        
+    
     }
     
     // Change the width and height of collectionview cells 

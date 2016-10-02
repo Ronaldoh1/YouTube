@@ -16,7 +16,11 @@ class HomeViewController: UICollectionViewController {
         return MenuBar()
     }()
     
-    let settingsLauncher = SettingsLauncher()
+    lazy var settingsLauncher: SettingsLauncher = {
+        let launcher = SettingsLauncher()
+        launcher.homeController = self
+        return launcher
+    }()
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -100,8 +104,6 @@ class HomeViewController: UICollectionViewController {
                     
                     self.videos?.append(video)
                     
-                    
-                    
                 }
                 
                 //Bounce back to the main thread and upadate the UI
@@ -121,6 +123,17 @@ class HomeViewController: UICollectionViewController {
     // Add black view to the entire window.
     @objc private func handleMore() {
         settingsLauncher.handleMore()
+       // showControllerForSetting()
+     
+    }
+    
+    func showController(for setting: Setting) {
+        let dummySettingsViewController = UIViewController()
+        dummySettingsViewController.view.backgroundColor = UIColor.white
+        dummySettingsViewController.navigationItem.title = setting.name
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.pushViewController(dummySettingsViewController, animated: true)
     }
     
     @objc private func handleSearch() {
