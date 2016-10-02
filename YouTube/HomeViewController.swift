@@ -30,7 +30,7 @@ class HomeViewController: UICollectionViewController {
         
         // Set text color to white for Navigationbar
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
-        titleLabel.text = "Home"
+        titleLabel.text = "  Home"
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         
@@ -141,9 +141,25 @@ class HomeViewController: UICollectionViewController {
     }
     
     private func setupMenuBar() {
+        //hide navigation by when the user scrolls up 
+        navigationController?.hidesBarsOnSwipe = true
+        
+        //Add a red view to the background so that when the user scrolls up there isn't an empty space
+        let redView = UIView()
+        redView.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
+        view.addSubview(redView)
+        view.addConstraintsWithFormat("H:|[v0]|", views: redView)
+        view.addConstraintsWithFormat("V:|[v0(50)]", views: redView)
+        
+        
+        
         view.addSubview(menuBar)
         view.addConstraintsWithFormat("H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat("V:|[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat("V:[v0(50)]", views: menuBar)
+        
+        // hide bar beneath the status bar 
+        
+        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
     }
     
     // MARK: UICollectionView Data Source
