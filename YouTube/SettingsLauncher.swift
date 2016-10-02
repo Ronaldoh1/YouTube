@@ -18,6 +18,11 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         return cv
     }()
     
+    let settings: [Setting] = {
+        return [Setting(name: "Settings", image: "settings"), Setting(name: "Terms & Privacy Policy", image: "privacy"), Setting(name: "Send Feedback", image: "feedback"), Setting(name: "Help ", image: "help"), Setting(name: "Switch Account", image: "switch_account"), Setting(name: "Cancel", image: "cancel")]
+    }()
+
+    
     override init() {
          super.init()
         
@@ -63,7 +68,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return settings.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,7 +76,13 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID , for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID , for: indexPath) as? SettingsCell else {
+            return UICollectionViewCell()
+        }
+        
+        let setting = settings[indexPath.item] as Setting
+        cell.setting = setting
+        
         return cell
     }
     

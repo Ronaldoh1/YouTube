@@ -13,6 +13,7 @@ class SettingsCell: BaseCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Settings"
+        label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     
@@ -23,10 +24,16 @@ class SettingsCell: BaseCell {
         return imageView
     }()
     
+    
+    var setting: Setting? {
+        didSet{
+            nameLabel.text = setting?.name
+            iconImageView.image = UIImage(named: setting!.image)
+        }
+    }
+    
     override func setupViews() {
         super.setupViews()
-        
-        backgroundColor = UIColor.blue
         
         addSubview(nameLabel)
         addSubview(iconImageView)
