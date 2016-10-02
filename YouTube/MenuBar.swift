@@ -21,6 +21,7 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
     
     let cellId = "cellId"
     let imageNames = ["home", "trending", "subscriptions", "account"]
+    var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +36,26 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
         backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
         collectionView.selectItem(at: IndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: .top)
         
+        setUpHorizonTalBar()
+    }
+    
+    func setUpHorizonTalBar() {
+        let horizontalBarView = UIView()
+        horizontalBarView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        horizontalBarView.translatesAutoresizingMaskIntoConstraints = false //must set to false or it will not show up.
+        addSubview(horizontalBarView)
+        
+        // new school way, need x, y wid height constraint
+        // x value
+        horizontalBarLeftAnchorConstraint = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
+        horizontalBarLeftAnchorConstraint?.isActive = true
+        // y value 
+        horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        
+        //width 
+        horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
+        //height 
+        horizontalBarView.heightAnchor.constraint(equalToConstant: 4).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,4 +94,18 @@ class MenuBar: UIView, UICollectionViewDelegateFlowLayout, UICollectionViewDeleg
         return 0
     }
     
+    
+    // selecting each of the menu items. 
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let x = CGFloat(indexPath.item) * frame.width / 4
+        horizontalBarLeftAnchorConstraint?.constant = x
+        
+       UIView.animate(withDuration: 0.76, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
+        self.layoutIfNeeded()
+        }, completion: nil)
+      
+     
+        
+    }
 }
