@@ -10,6 +10,14 @@ import UIKit
 
 class SettingsCell: BaseCell {
     
+    override var isHighlighted: Bool {
+        didSet {
+            backgroundColor = isHighlighted ? UIColor.darkGray : UIColor.white
+            nameLabel.textColor = isHighlighted ? UIColor.white : UIColor.black
+            iconImageView.tintColor = isHighlighted ? UIColor.white : UIColor.darkGray
+        }
+    }
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Settings"
@@ -28,7 +36,8 @@ class SettingsCell: BaseCell {
     var setting: Setting? {
         didSet{
             nameLabel.text = setting?.name
-            iconImageView.image = UIImage(named: setting!.image)
+            iconImageView.image = UIImage(named: setting!.image)?.withRenderingMode(.alwaysTemplate)
+            iconImageView.tintColor = UIColor.darkGray
         }
     }
     
@@ -43,4 +52,5 @@ class SettingsCell: BaseCell {
         addConstraintsWithFormat("V:|-8-[v0(30)]", views: iconImageView)
         
     }
+    
 }

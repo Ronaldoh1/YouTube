@@ -22,6 +22,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         return [Setting(name: "Settings", image: "settings"), Setting(name: "Terms & Privacy Policy", image: "privacy"), Setting(name: "Send Feedback", image: "feedback"), Setting(name: "Help ", image: "help"), Setting(name: "Switch Account", image: "switch_account"), Setting(name: "Cancel", image: "cancel")]
     }()
 
+    let cellHeight: CGFloat = 50
     
     override init() {
          super.init()
@@ -42,9 +43,9 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             window.addSubview(blackView)
             window.addSubview(collectionView)
             
-            let height: CGFloat = 200
+            let height: CGFloat = CGFloat(settings.count) * cellHeight
             let y = window.frame.height - height
-            collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 200)
+            collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
             
             blackView.frame = window.frame
             blackView.alpha = 0
@@ -89,7 +90,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     // Change the width and height of collectionview cells 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 50)
+        return CGSize(width: collectionView.frame.width, height: cellHeight)
     }
     
     // reduce cell spacing 
