@@ -130,7 +130,7 @@ class HomeViewController: UICollectionViewController {
     func showController(for setting: Setting) {
         let dummySettingsViewController = UIViewController()
         dummySettingsViewController.view.backgroundColor = UIColor.white
-        dummySettingsViewController.navigationItem.title = setting.name
+        dummySettingsViewController.navigationItem.title = setting.name.rawValue
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.pushViewController(dummySettingsViewController, animated: true)

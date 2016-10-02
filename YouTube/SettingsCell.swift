@@ -35,7 +35,7 @@ class SettingsCell: BaseCell {
     
     var setting: Setting? {
         didSet{
-            nameLabel.text = setting?.name
+            nameLabel.text = setting?.name.rawValue
             iconImageView.image = UIImage(named: setting!.image)?.withRenderingMode(.alwaysTemplate)
             iconImageView.tintColor = UIColor.darkGray
         }

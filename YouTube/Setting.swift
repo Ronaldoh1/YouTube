@@ -10,11 +10,21 @@ import UIKit
 
 class Setting: NSObject {
     
-    let name: String
+    let name: SettingName
     let image: String
     
-    init(name: String, image: String) {
+    init(name: SettingName, image: String) {
         self.name = name
         self.image = image
     }
+}
+
+enum SettingName: String {
+    
+    case settings = "Settings"
+    case termsPrivacy = "Terms & Privacy"
+    case feedback = "Send Feedback"
+    case help = "Help"
+    case switchAcount = "Switch Account"
+    case cancel = "Cancel"
 }

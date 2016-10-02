@@ -19,7 +19,14 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     }()
     
     let settings: [Setting] = {
-        return [Setting(name: "Settings", image: "settings"), Setting(name: "Terms & Privacy Policy", image: "privacy"), Setting(name: "Send Feedback", image: "feedback"), Setting(name: "Help ", image: "help"), Setting(name: "Switch Account", image: "switch_account"), Setting(name: "Cancel", image: "cancel")]
+        let settingSetting = Setting(name: .settings, image: "settings")
+        let termsPrivacy = Setting(name: .termsPrivacy, image: "privacy")
+        let feedback = Setting(name: .feedback, image: "feedback")
+        let help = Setting(name: .help, image: "help")
+        let switchAcount  = Setting(name: .switchAcount, image: "switch_account")
+        let cancelSetting = Setting(name: .cancel, image: "Cancel")
+        
+        return [settingSetting, termsPrivacy, feedback, help, switchAcount, cancelSetting]
     }()
 
     let cellHeight: CGFloat = 50
@@ -68,7 +75,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             
         }) { (completed: Bool) in
             
-            if setting.name != "Cancel" && setting.name != "" {
+            if  setting.name != .cancel {
                 self.homeController?.showController(for: setting)
             }
             
