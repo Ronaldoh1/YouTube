@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB01C3E71DA1D1C700BFD323 /* APISErvice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB01C3E61DA1D1C600BFD323 /* APISErvice.swift */; };
 		FB17EC601D8C08420037DA49 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB17EC5F1D8C08420037DA49 /* UIColor+Utils.swift */; };
 		FB2CB3161D971AC000374B95 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2CB3151D971AC000374B95 /* Video.swift */; };
 		FB2CB3181D971ACB00374B95 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2CB3171D971ACB00374B95 /* Channel.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB01C3E61DA1D1C600BFD323 /* APISErvice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APISErvice.swift; sourceTree = "<group>"; };
 		FB17EC5F1D8C08420037DA49 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		FB2CB3151D971AC000374B95 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		FB2CB3171D971ACB00374B95 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB01C3E51DA1D1B000BFD323 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				FB01C3E61DA1D1C600BFD323 /* APISErvice.swift */,
+			);
+			name = APIService;
+			sourceTree = "<group>";
+		};
 		FB17EC5E1D8C07770037DA49 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +129,7 @@
 		FB653E231D853B2C009EF30F /* YouTube */ = {
 			isa = PBXGroup;
 			children = (
+				FB01C3E51DA1D1B000BFD323 /* APIService */,
 				FB17EC631D8C087A0037DA49 /* Controller */,
 				FB17EC621D8C08720037DA49 /* Model */,
 				FB17EC611D8C086B0037DA49 /* View */,
@@ -213,6 +224,7 @@
 				FB2D9C151DA0750700A9AE4D /* SettingsCell.swift in Sources */,
 				FB653E271D853B2C009EF30F /* HomeViewController.swift in Sources */,
 				FB40D5C71D8EE5A500382B51 /* MenuBar.swift in Sources */,
+				FB01C3E71DA1D1C700BFD323 /* APISErvice.swift in Sources */,
 				FB2CB3161D971AC000374B95 /* Video.swift in Sources */,
 				FB40D5CB1D8EFA3D00382B51 /* BaseCell.swift in Sources */,
 				FB2D9C131DA0676100A9AE4D /* SettingsLauncher.swift in Sources */,
