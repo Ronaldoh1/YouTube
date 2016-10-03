@@ -12,8 +12,10 @@ class HomeViewController: UICollectionViewController {
     
     var videos: [Video]?
     
-    let menuBar: MenuBar = {
-        return MenuBar()
+    lazy var menuBar: MenuBar = {
+        let mb = MenuBar()
+        mb.homeController = self //ad reference to the homeview controller, to make this accessible, we have to make it a lazy var 
+        return mb
     }()
     
     lazy var settingsLauncher: SettingsLauncher = {
@@ -21,6 +23,8 @@ class HomeViewController: UICollectionViewController {
         launcher.homeController = self
         return launcher
     }()
+    
+    let cellID = "cellID"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -37,9 +41,28 @@ class HomeViewController: UICollectionViewController {
         navigationItem.titleView = titleLabel
         navigationController?.navigationBar.isTranslucent = false
         
+  
+        setupCollectionView()
+        
+        //setup Menu Bar
+        setupMenuBar()
+        
+        //setupNavBar Buttons
+        setUpNavBarButtons()
+    }
+    
+    private func setupCollectionView() {
+        
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumLineSpacing = 0 // this removes the gap between the cells.
+        }
+        
         collectionView?.backgroundColor = UIColor.white
         
-        collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
+       // collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
+        
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
@@ -51,11 +74,11 @@ class HomeViewController: UICollectionViewController {
         
         collectionView?.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         
-        //setup Menu Bar
-        setupMenuBar()
+        //this allows you to page in the horizontal direction
+        collectionView?.isPagingEnabled = true
         
-        //setupNavBar Buttons
-        setUpNavBarButtons()
+        collectionView?.isScrollEnabled = true
+        
     }
     
     private func setUpNavBarButtons() {
@@ -96,7 +119,7 @@ class HomeViewController: UICollectionViewController {
     }
     
     @objc private func handleSearch() {
-        print("123")
+        scrollToMenuIndex(menuIndex: 2)
     }
     
     private func setupMenuBar() {
@@ -121,42 +144,71 @@ class HomeViewController: UICollectionViewController {
         menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
     }
     
+    //make the collection view scroll to an indexPath
+    
+    func scrollToMenuIndex(menuIndex: Int) {
+        let indexPath = IndexPath(item: menuIndex, section: 0)
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    
+    //Eliminate extra spacing you have at the bottom of each cell.
+//    @objc(collectionView:layout:minimumLineSpacingForSectionAtIndex:) func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0
+//    }
+}
+
+extension HomeViewController {
+    
     // MARK: UICollectionView Data Source
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos?.count ?? 0
+        return 4
     }
     
+    //these 4 sections are the sections that will be presented each time the user taps on menue item
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 4
     }
     
+    // These are the cells that are getting presented
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? VideoCell else {
-            return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
         
-        let video = videos?[indexPath.item]
-        cell.video = video
+        let color: [UIColor] = [.blue, .black, .red, .brown]
+        cell.backgroundColor = color[indexPath.item]
         
         return cell
     }
     
-    //Eliminate extra spacing you have at the bottom of each cell.
-    @objc(collectionView:layout:minimumLineSpacingForSectionAtIndex:) func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    // the horrizontal constraint for the bar is changed based on the scrollView's content offset. so now if the user swipes right or left the white bar also moves with it.
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 4
+    }
+    
+    // this method lets you know where the scroll view is (based on the with of the screen). The targetContentOffSet is how wide each cell is... if we know the view's frame, then we can get the index by deviding targetContentOffset.pointee.x / view.frame.width and using the index to get our indexPath.
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = targetContentOffset.pointee.x / view.frame.width
+        let indexPath = IndexPath(item: Int(index) , section: 0)
+        menuBar.collectionView.selectItem(at:indexPath , animated: true, scrollPosition: .centeredHorizontally)
     }
 }
 
+ //This determines the cell's height
+
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        //we know what the width is, but need to figure out the height
+//        //we can get the with of the thumnail image by using the view of the cell and subracting -16 from each side and then we multiply it by 9/ 16 ratio
+//        let height = (view.frame.width - 16 - 16) * 9 / 16 // we subtract the spacing from the left and right for the with. And then multiply by 9/16 ratio (this is the ratio for video)
+//        
+//        //The 68 below comes from all the spacing that we've addded in order to layout everything vertically. So 8 + 44 + 16
+//        return CGSize(width: view.frame.width, height: height + 16 + 68 + 20)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //we know what the width is, but need to figure out the height
-        //we can get the with of the thumnail image by using the view of the cell and subracting -16 from each side and then we multiply it by 9/ 16 ratio
-        let height = (view.frame.width - 16 - 16) * 9 / 16 // we subtract the spacing from the left and right for the with. And then multiply by 9/16 ratio (this is the ratio for video)
-        
-        //The 68 below comes from all the spacing that we've addded in order to layout everything vertically. So 8 + 44 + 16
-        return CGSize(width: view.frame.width, height: height + 16 + 68 + 20)
+        return CGSize(width: view.frame.width, height: view.frame.height)
     }
 }
 
