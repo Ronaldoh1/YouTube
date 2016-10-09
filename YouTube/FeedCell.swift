@@ -46,6 +46,7 @@ class FeedCell: BaseCell, UICollectionViewDelegateFlowLayout, UICollectionViewDe
     private func fetchVideos() {
         APIService.sharedInstance.fetchVideos { (videos: [Video]) in
             self.videos = videos
+            
             self.collectionView.reloadData()
         }
     }

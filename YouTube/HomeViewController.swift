@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UICollectionViewController {
     
     var videos: [Video]?
+    let titles = ["Home", "Trending", "Subscriptions", "Account"]
     
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()
@@ -151,8 +152,15 @@ class HomeViewController: UICollectionViewController {
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = IndexPath(item: menuIndex, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        changeTitle(for: menuIndex)
     }
     
+    //helper methods
+    fileprivate  func changeTitle(for index: Int) {
+        if let titleLabel = navigationItem.titleView as? UILabel {
+            titleLabel.text = "  \(titles[Int(index)])"
+        }
+    }
     
     //Eliminate extra spacing you have at the bottom of each cell.
 //    @objc(collectionView:layout:minimumLineSpacingForSectionAtIndex:) func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -177,9 +185,6 @@ extension HomeViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
         
-       // let color: [UIColor] = [.blue, .black, .red, .brown]
-       // cell.backgroundColor = color[indexPath.item]
-        
         return cell
     }
     
@@ -193,6 +198,8 @@ extension HomeViewController {
         let index = targetContentOffset.pointee.x / view.frame.width
         let indexPath = IndexPath(item: Int(index) , section: 0)
         menuBar.collectionView.selectItem(at:indexPath , animated: true, scrollPosition: .centeredHorizontally)
+        
+        changeTitle(for: Int(index))
     }
 }
 
