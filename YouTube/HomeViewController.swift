@@ -63,6 +63,8 @@ class HomeViewController: UICollectionViewController {
        // collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
         
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        
+        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellID)
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
@@ -175,8 +177,8 @@ extension HomeViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
         
-        let color: [UIColor] = [.blue, .black, .red, .brown]
-        cell.backgroundColor = color[indexPath.item]
+       // let color: [UIColor] = [.blue, .black, .red, .brown]
+       // cell.backgroundColor = color[indexPath.item]
         
         return cell
     }
@@ -208,7 +210,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 //    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+        return CGSize(width: view.frame.width, height: view.frame.height - 50)
     }
 }
 
