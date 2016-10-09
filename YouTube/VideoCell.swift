@@ -1,3 +1,4 @@
+
 //
 //  VideoCell.swift
 //  YouTube
@@ -18,7 +19,7 @@ class VideoCell: BaseCell {
             
             setupProfileImageName()
             
-            if let channelName = video?.channel?.name, let numberOfViews = video?.numberOfViews {
+            if let channelName = video?.channel?.name, let numberOfViews = video?.number_of_views {
                 
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
@@ -89,14 +90,14 @@ class VideoCell: BaseCell {
     var titleLabelHeightConstraint: NSLayoutConstraint?
     
     func setupProfileImageName() {
-        if let profileImageURL = video?.channel?.profileImageName {
+        if let profileImageURL = video?.channel?.profile_image_name {
             userProfileImageView.loadImageUsingUrlString(urlString: profileImageURL)
         }
     }
 
     func setupThumbnailImage() {
         
-        if let thumbnailImageurl = video?.thumbNailImageName {
+        if let thumbnailImageurl = video?.thumbnail_image_name {
             
          thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageurl)
         }

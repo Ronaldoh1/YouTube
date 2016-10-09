@@ -43,7 +43,7 @@ class FeedCell: BaseCell, UICollectionViewDelegateFlowLayout, UICollectionViewDe
     
     // Helper methods
     
-    private func fetchVideos() {
+    func fetchVideos() {
         APIService.sharedInstance.fetchVideos { (videos: [Video]) in
             self.videos = videos
             

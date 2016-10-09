@@ -25,8 +25,9 @@ class HomeViewController: UICollectionViewController {
         return launcher
     }()
     
-    let cellID = "cellID"
+    let feedCellID = "feedCellID"
     let trendingCellID = "trendingCellID"
+    let subscriptionCellID = "subscriptionCellID"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -62,10 +63,11 @@ class HomeViewController: UICollectionViewController {
         
        // collectionView?.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: feedCellID)
         
-        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: feedCellID)
         collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellID)
+        collectionView?.register(SubscriptionCell.self, forCellWithReuseIdentifier: subscriptionCellID)
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
@@ -176,12 +178,20 @@ extension HomeViewController {
     
     // These are the cells that are getting presented
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var identifier: String
         
-        if indexPath.item == 1 {
-           return collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellID, for: indexPath)
+        if indexPath.item == 0 {
+            identifier = feedCellID
+        } else if indexPath.item == 1 {
+           identifier = trendingCellID
+        } else if indexPath.item == 2 {
+            identifier = subscriptionCellID
+        } else {
+            identifier = feedCellID
         }
-    
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
+        
+        return collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        
     }
     
     // the horrizontal constraint for the bar is changed based on the scrollView's content offset. so now if the user swipes right or left the white bar also moves with it.
