@@ -26,12 +26,11 @@ class HomeViewController: UICollectionViewController {
     }()
     
     let cellID = "cellID"
+    let trendingCellID = "trendingCellID"
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchVideos()
         
         // Set text color to white for Navigationbar
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
@@ -66,6 +65,7 @@ class HomeViewController: UICollectionViewController {
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         
         collectionView?.register(FeedCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView?.register(TrendingCell.self, forCellWithReuseIdentifier: trendingCellID)
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
@@ -97,14 +97,7 @@ class HomeViewController: UICollectionViewController {
     private func setUpThumnailImage() {
         
     }
-    
-    private func fetchVideos() {
-        APIService.sharedInstance.fetchVideos { (videos: [Video]) in
-            self.videos = videos
-            self.collectionView?.reloadData()
-        }
-    }
-    
+
     // Add black view to the entire window.
     @objc private func handleMore() {
         settingsLauncher.handleMore()
@@ -183,9 +176,12 @@ extension HomeViewController {
     
     // These are the cells that are getting presented
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
         
-        return cell
+        if indexPath.item == 1 {
+           return collectionView.dequeueReusableCell(withReuseIdentifier: trendingCellID, for: indexPath)
+        }
+    
+        return collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath)
     }
     
     // the horrizontal constraint for the bar is changed based on the scrollView's content offset. so now if the user swipes right or left the white bar also moves with it.

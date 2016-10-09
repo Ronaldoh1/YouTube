@@ -28,8 +28,7 @@ class APIService: NSObject {
                     let video = Video()
                     
                     video.title = dictionary["title"] as? String
-                    //                    let numberOfViewRaw = dictionary["number_of_views"] as? String
-                    //                    video.numberOfViews = NSNumber(numberOfViewRaw
+                    
                     video.thumbNailImageName = dictionary["thumbnail_image_name"] as? String
                     
                     let channelDictionary = dictionary["channel"] as? [String : AnyObject]
@@ -46,11 +45,10 @@ class APIService: NSObject {
                 }
                 
                 //Bounce back to the main thread and upadate the UI
-                
-//                self.collectionView?.reloadData()
-                completion(videos)
-                
-                
+                DispatchQueue.main.async {
+                    completion(videos)
+                    
+                }
                 
             } catch let jsonError {
                 print(jsonError)

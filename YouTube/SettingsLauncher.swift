@@ -28,13 +28,13 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         
         return [settingSetting, termsPrivacy, feedback, help, switchAcount, cancelSetting]
     }()
-
+    
     let cellHeight: CGFloat = 50
     
     var homeController: HomeViewController?
     
     override init() {
-         super.init()
+        super.init()
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -42,7 +42,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
     }
     
     func handleMore() {
-    
+        
         if let window = UIApplication.shared.keyWindow {
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
             
@@ -58,7 +58,7 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
             blackView.frame = window.frame
             blackView.alpha = 0
             
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { 
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.blackView.alpha = 1.0
                 self.collectionView.frame = CGRect(x: 0, y: y, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
                 }, completion: nil)
@@ -100,21 +100,21 @@ class SettingsLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDe
         
         return cell
     }
-    //Respond to clicks 
+    //Respond to clicks
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let setting = self.settings[indexPath.item]
-       handleDismiss(setting: setting)
+        handleDismiss(setting: setting)
         
-    
+        
     }
     
-    // Change the width and height of collectionview cells 
+    // Change the width and height of collectionview cells
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: cellHeight)
     }
     
-    // reduce cell spacing 
+    // reduce cell spacing
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0

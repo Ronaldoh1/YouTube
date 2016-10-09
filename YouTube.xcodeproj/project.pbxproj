@@ -26,6 +26,7 @@
 		FB8880921D85EB1F0096562B /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8880911D85EB1F0096562B /* UIView+Utils.swift */; };
 		FBC3BC211D854EF900F2FB5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBC3BC1F1D854EF900F2FB5F /* Main.storyboard */; };
 		FBED414C1DA9EBF7002A2467 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED414B1DA9EBF7002A2467 /* FeedCell.swift */; };
+		FBED414E1DAA9321002A2467 /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBED414D1DAA9321002A2467 /* TrendingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		FB8880911D85EB1F0096562B /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		FBC3BC201D854EF900F2FB5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FBED414B1DA9EBF7002A2467 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		FBED414D1DAA9321002A2467 /* TrendingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				FB40D5C81D8EF9C900382B51 /* MenuCell.swift */,
 				FB40D5CA1D8EFA3D00382B51 /* BaseCell.swift */,
 				FB2D9C141DA0750700A9AE4D /* SettingsCell.swift */,
+				FBED414D1DAA9321002A2467 /* TrendingCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				FB653E251D853B2C009EF30F /* AppDelegate.swift in Sources */,
 				FBED414C1DA9EBF7002A2467 /* FeedCell.swift in Sources */,
 				FB8880921D85EB1F0096562B /* UIView+Utils.swift in Sources */,
+				FBED414E1DAA9321002A2467 /* TrendingCell.swift in Sources */,
 				FB8880901D8550D30096562B /* VideoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
