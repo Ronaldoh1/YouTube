@@ -34,6 +34,23 @@ class VideoPlayerView: UIView {
         button.addTarget(self, action: #selector(handlePause), for: .touchUpInside)
         return button
     }()
+    
+    let videoLenghtLabel: UILabel = {
+        let label = UILabel()
+        label.text = "00:00"
+        label.textColor = .white
+        label.textAlignment = .right
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        
+        return label
+    }()
+    
+    let videoSlider: UISlider = {
+       let slider = UISlider()
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
+    
     var player: AVPlayer?
     var isPlaying = false
     
@@ -66,6 +83,18 @@ class VideoPlayerView: UIView {
         pausePayButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         pausePayButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         pausePayButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        controlsContainerView.addSubview(videoLenghtLabel)
+        videoLenghtLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        videoLenghtLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        videoLenghtLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        videoLenghtLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+        
+        controlsContainerView.addSubview(videoSlider)
+        videoSlider.rightAnchor.constraint(equalTo: videoLenghtLabel.leftAnchor).isActive = true
+        videoSlider.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        videoSlider.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        videoSlider.heightAnchor.constraint(equalToConstant: 30).isActive = true
         backgroundColor = UIColor.black
     }
 
